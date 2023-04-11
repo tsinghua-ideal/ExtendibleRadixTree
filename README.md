@@ -11,7 +11,7 @@ You are supposed to replace "/mnt/aep1/test" with directory where you mount your
 ```
 
 
-how to run codes?
+### how to run codes?
 
 ```
 cmake .
