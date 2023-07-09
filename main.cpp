@@ -34,6 +34,7 @@ uint64_t *keys_int;
 
 void keys_init() {
 //     init test case
+    cout << "Start Preparing dataset: " << testNum << "keys" << endl;
     keys = new unsigned char *[testNum];
     lengths = new int[testNum];
     rng r;
@@ -42,6 +43,7 @@ void keys_init() {
     for (int i = 0; i < testNum; i++) {
         keys_int[i] = rng_next(&r);
     }
+    cout << "Finish dataset preparing." << endl;
 }
 
 void correctness_test() {
@@ -62,17 +64,21 @@ void speed_test() {
 }
 
 int main(int argc, char *argv[]) {
+    //initialize allocator
     init_fast_allocator(true);
     testNum = 10000000;
 
+    // prepare data set
     keys_init();
 
     // init a new ExtendibleRadixTree
     ert = NewExtendibleRadixTreeInt();
 
+    // evaluate
     correctness_test();
     speed_test();
 
+    // free allocated DRAM/PM
     fast_free();
     return 0;
 }
