@@ -9,6 +9,10 @@
 using namespace std;
 
 int testNum = 100000;
+int distribution = 0;
+string filePath;
+bool onPM = false;
+
 ERTInt *ert;
 
 unsigned char **keys;
@@ -34,14 +38,21 @@ uint64_t *keys_int;
 
 void keys_init() {
 //     init test case
-    cout << "Start Preparing dataset: " << testNum << "keys" << endl;
+    cout << "Start Preparing dataset: " << testNum << " keys" << endl;
     keys = new unsigned char *[testNum];
     lengths = new int[testNum];
     rng r;
     rng_init(&r, 1, 2);
     keys_int = new uint64_t[testNum];
     for (int i = 0; i < testNum; i++) {
-        keys_int[i] = rng_next(&r);
+        switch(distribution) {
+            case 0:
+                keys_int[i] = rng_next(&r) % testNum; break;
+            case 1:
+                keys_int[i] = rng_next(&r); break;
+            default:
+                keys_int[i] = rng_next(&r); break;
+        }
     }
     cout << "Finish dataset preparing." << endl;
 }
@@ -64,9 +75,15 @@ void speed_test() {
 }
 
 int main(int argc, char *argv[]) {
+    sscanf(argv[1], "%d", &testNum);
+    sscanf(argv[2], "%d", &distribution);
+    if (argc == 4) {
+        onPM = true;
+        filePath = argv[3];
+    }
+
     //initialize allocator
-    init_fast_allocator(true);
-    testNum = 10000000;
+    init_fast_allocator(true, onPM, filePath);
 
     // prepare data set
     keys_init();
@@ -75,7 +92,6 @@ int main(int argc, char *argv[]) {
     ert = NewExtendibleRadixTreeInt();
 
     // evaluate
-    correctness_test();
     speed_test();
 
     // free allocated DRAM/PM

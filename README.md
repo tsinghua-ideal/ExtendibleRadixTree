@@ -24,12 +24,29 @@ If you want to test it on the NVM, please follow the steps:
 string nvm_filename = "/mnt/aep1/test";
 ```
 
+Note that Optane DCPMM should be mapped to a pre-defined address space through a DAX file system.
+
 ### Build and Run
 
 ```
 cmake .
 make
-./nvmkv
+```
+To run the experiment, specify the following parameters:
+
+keyNum: the num of keys in the synthetic dataset
+
+distribution: the synthetic dataset distributoin, 0 - dense, 1 - sparse
+
+OptanePath: Optane DCPMM path where the memory will be allocated, by default
+
+```
+./nvmkv <keyNum> <distribution> <OptanePath>
+```
+For example:
+
+```
+./nvmkv 10000000 0 /mnt/aep1/test
 ```
 
 ### Reference

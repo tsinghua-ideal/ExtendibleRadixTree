@@ -27,7 +27,6 @@ using namespace std;
 class fastalloc {
 
 public:
-
     bool is_used = false;
     char *dram[100];
     char *dram_curr = NULL;
@@ -38,6 +37,8 @@ public:
     char *nvm_curr = NULL;
     uint64_t nvm_left = 0;
     uint64_t nvm_cnt = 0;
+    bool onPM = false;
+    string filePath;
 
     fastalloc();
 
@@ -51,10 +52,10 @@ public:
 class concurrency_fastalloc : public fastalloc {
 
 public:
-    void init();
+    void init(bool _onPM, string _filePath);
 };
 
-void init_fast_allocator(bool isMultiThread);
+void init_fast_allocator(bool isMultiThread, bool _onPM = false, string filePath = NULL);
 
 void *fast_alloc(uint64_t size, bool _on_nvm = true);
 
