@@ -14,15 +14,7 @@ The `fastalloc` memory manager supports allocating memory in DRAM and space allo
 
 This data structure can run on Unix machines. The default code creates the data structure in DRAM and tests it. 
 
-If you want to test it on the NVM, please follow the steps:
-
-* uncomment the code in `fastalloc.cpp`. 
-
-* specify the directory of the Persistent Memory mounted by replacing "/mnt/aep1/test" in line 15 in `fastalloc.cpp`.
-
-```
-string nvm_filename = "/mnt/aep1/test";
-```
+If you want to test it on the NVM, please specify the PM file in the command.
 
 Note that Optane DCPMM should be mapped to a pre-defined address space through a DAX file system.
 
