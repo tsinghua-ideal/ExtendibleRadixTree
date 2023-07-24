@@ -9,6 +9,7 @@ The `fastalloc` memory manager supports allocating memory in DRAM and space allo
 * C++17
 * Unix operating system
 * CMake
+* Python 3.8
 
 ### Environment
 
@@ -20,6 +21,13 @@ Note that Optane DCPMM should be mapped to a pre-defined address space through a
 
 ### Build and Run
 
+#### ALL-IN-ONE
+```$xslt
+sh run.sh
+```
+
+#### Run the experiments
+
 ```
 cmake .
 make
@@ -28,17 +36,15 @@ To run the experiment, specify the following parameters:
 
 keyNum: the num of keys in the synthetic dataset
 
-distribution: the synthetic dataset distributoin, 0 - dense, 1 - sparse
-
-OptanePath: Optane DCPMM path where the memory will be allocated, by default
+OptanePath: Optane DCPMM path where the memory will be allocated, by default, it's will be allocated on DRAM.
 
 ```
-./nvmkv <keyNum> <distribution> <OptanePath>
+./nvmkv <keyNum> <OptanePath>
 ```
 For example:
 
 ```
-./nvmkv 10000000 0 /mnt/aep1/test
+./nvmkv 10000000 /mnt/aep1/test
 ```
 
 ### Reference
