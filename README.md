@@ -1,8 +1,8 @@
 # ERT
 
-The source codes of Extendible Radix Tree. The implementation includes Extendible Radix Tree, a random number generator for generating test data, and a simple memory manager. 
+The source codes of Extendible Radix Tree. The implementation includes Extendible Radix Tree, a random number generator for generating test data, and a simple memory manager as well as all other sota evaluated in the paper. 
 
-The `fastalloc` memory manager supports allocating memory in DRAM and space allocation in NVM. Please refer to the `Environment` section for specific usage instructions.
+The `fastalloc` memory manager supports allocating memory in DRAM and space allocation in PM. Please refer to the `Environment` section for specific usage instructions.
 
 ### Dependence
 
@@ -15,7 +15,7 @@ The `fastalloc` memory manager supports allocating memory in DRAM and space allo
 
 This data structure can run on Unix machines. The default code creates the data structure in DRAM and tests it. 
 
-If you want to test it on the NVM, please specify the PM file in the command.
+If you want to test it on the Persistent Memory, please specify the PM file in the command.
 
 Note that Optane DCPMM should be mapped to a pre-defined address space through a DAX file system.
 
