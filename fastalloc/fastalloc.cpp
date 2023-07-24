@@ -39,8 +39,6 @@ void concurrency_fastalloc::init(bool _onPM, string _filePath) {
     dram_cnt++;
 
 #ifdef __linux__
-    std::thread::id this_id = std::this_thread::get_id();
-    unsigned int t = *(unsigned int*)&this_id;// threadid to unsigned int
     if (onPM) {
         string nvm_filename = filePath + to_string(nvm_cnt);
         int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
