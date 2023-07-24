@@ -12,14 +12,15 @@ void fastalloc::init() {
     dram_cnt++;
 
 #ifdef __linux__
-    nvm[nvm_cnt] = new char[ALLOC_SIZE];
-    // if you want to use PM, uncomment the following statements and set the according PM path
-    // string nvm_filename = "/mnt/aep1/test";
-    // nvm_filename = nvm_filename + to_string(nvm_cnt);
-    // int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
-    // if (posix_fallocate(nvm_fd, 0, ALLOC_SIZE) < 0)
-    //     puts("fallocate fail\n");
-    // nvm[nvm_cnt] = (char *) mmap(NULL, ALLOC_SIZE, PROT_READ | PROT_WRITE, MAP_SYNC | MAP_SHARED_VALIDATE, nvm_fd, 0);
+    if (onPM) {
+        string nvm_filename = filePath + to_string(nvm_cnt);
+        int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
+        if (posix_fallocate(nvm_fd, 0, ALLOC_SIZE) < 0)
+            puts("fallocate fail\n");
+        nvm[nvm_cnt] = (char *) mmap(NULL, ALLOC_SIZE, PROT_READ | PROT_WRITE, MAP_SYNC | MAP_SHARED_VALIDATE, nvm_fd, 0);
+    } else {
+        nvm[nvm_cnt] = new char[ALLOC_SIZE];
+    }
 #else
     nvm[nvm_cnt] = new char[ALLOC_SIZE];
 #endif
@@ -40,12 +41,15 @@ void concurrency_fastalloc::init(bool _onPM, string _filePath) {
 #ifdef __linux__
     std::thread::id this_id = std::this_thread::get_id();
     unsigned int t = *(unsigned int*)&this_id;// threadid to unsigned int
-    nvm[nvm_cnt] = new char[ALLOC_SIZE];
-    string nvm_filename = filePath + to_string(nvm_cnt);
-    int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
-    if (posix_fallocate(nvm_fd, 0, CONCURRENCY_ALLOC_SIZE) < 0)
-        puts("fallocate fail\n");
-    nvm[nvm_cnt] = (char *) mmap(NULL, CONCURRENCY_ALLOC_SIZE, PROT_READ | PROT_WRITE, MAP_SYNC | MAP_SHARED_VALIDATE, nvm_fd, 0);
+    if (onPM) {
+        string nvm_filename = filePath + to_string(nvm_cnt);
+        int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
+        if (posix_fallocate(nvm_fd, 0, ALLOC_SIZE) < 0)
+            puts("fallocate fail\n");
+        nvm[nvm_cnt] = (char *) mmap(NULL, ALLOC_SIZE, PROT_READ | PROT_WRITE, MAP_SYNC | MAP_SHARED_VALIDATE, nvm_fd, 0);
+    } else {
+        nvm[nvm_cnt] = new char[ALLOC_SIZE];
+    }
 #else
     nvm[nvm_cnt] = new char[CONCURRENCY_ALLOC_SIZE];
 #endif
@@ -59,12 +63,15 @@ void *fastalloc::alloc(uint64_t size, bool _on_nvm) {
     if (_on_nvm) {
         if (unlikely(size > nvm_left)) {
 #ifdef __linux__
-            nvm[nvm_cnt] = new char[ALLOC_SIZE];
-            string nvm_filename = filePath + to_string(nvm_cnt);
-            int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
-            if (posix_fallocate(nvm_fd, 0, ALLOC_SIZE) < 0)
-                puts("fallocate fail\n");
-            nvm[nvm_cnt] = (char *) mmap(NULL, ALLOC_SIZE, PROT_READ | PROT_WRITE, MAP_SYNC | MAP_SHARED_VALIDATE, nvm_fd, 0);
+            if (onPM) {
+                string nvm_filename = filePath + to_string(nvm_cnt);
+                int nvm_fd = open(nvm_filename.c_str(), O_CREAT | O_RDWR, 0644);
+                if (posix_fallocate(nvm_fd, 0, ALLOC_SIZE) < 0)
+                    puts("fallocate fail\n");
+                nvm[nvm_cnt] = (char *) mmap(NULL, ALLOC_SIZE, PROT_READ | PROT_WRITE, MAP_SYNC | MAP_SHARED_VALIDATE, nvm_fd, 0);
+            } else {
+                nvm[nvm_cnt] = new char[ALLOC_SIZE];
+            }
 #else
             nvm[nvm_cnt] = new char[ALLOC_SIZE];
 #endif
