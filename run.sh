@@ -5,5 +5,5 @@ make
 
 cd Figure
 pip3 install -r requirements.txt
-python plot_insert.py
-python plot_insert.py
+python3 plot_insert.py
+python3 plot_insert.py
