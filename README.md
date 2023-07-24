@@ -26,12 +26,14 @@ Note that Optane DCPMM should be mapped to a pre-defined address space through a
 sh run.sh
 ```
 
-#### Run the experiments
+#### Build
 
 ```
 cmake .
 make
 ```
+
+#### Run the experiment
 To run the experiment, specify the following parameters:
 
 keyNum: the num of keys in the synthetic dataset
