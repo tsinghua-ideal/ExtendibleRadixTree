@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 cmake .
 make
-./nvmkv 1000000 "/mnt/pm/test"
+./nvmkv 1000000
 
 cd Figure
 pip install -r requirements.txt
