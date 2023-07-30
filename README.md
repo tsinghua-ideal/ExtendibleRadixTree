@@ -31,8 +31,9 @@ To facilitate the evaluation we set up the evaluation environment on an Internet
 ### Build and Run
 
 By default, all the memory are allocated on DRAM. If you want to test it on Persistent Memory, please specify the PM file in the command line.
+We provides scripts to evaluate in one-button. You can also build and run the benchmark manually.
 
-#### To evaluate in one-button
+#### Evaluate in one-button
 ```$xslt
 sh run.sh
 ```
