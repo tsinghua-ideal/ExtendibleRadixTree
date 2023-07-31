@@ -1,6 +1,6 @@
 # ERT
 
-Extendible Radix Tree (ERT), an efficient indexing structure for PM that signifi- cantly reduces tree heights to minimize random reads, while still maintaining fast in-node search speed. The key idea is to use extendible hashing for each node in a radix tree. 
+Extendible Radix Tree (ERT), an efficient indexing structure for PM that significantly reduces tree heights to minimize random reads, while still maintaining fast in-node search speed. The key idea is to use extendible hashing for each node in a radix tree. 
 
 This repo contains the source codes of Extendible Radix Tree. The implementation includes Extendible Radix Tree, a random number generator for generating test data, and a simple memory manager as well as all other state-of-the-art works evaluated in the paper. 
 

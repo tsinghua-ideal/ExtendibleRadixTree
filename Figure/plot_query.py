@@ -36,7 +36,7 @@ ax.xaxis.set_ticks_position('none')
 
 # y axis
 ax.yaxis.grid(True)
-ax.set_ylabel('Insert Throughput (Mops)')
+ax.set_ylabel('Query Throughput (Mops)')
 
 fig.tight_layout()
 easypyplot.format.resize_ax_box(ax, hratio=1)
