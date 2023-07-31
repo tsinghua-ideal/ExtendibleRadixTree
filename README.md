@@ -30,8 +30,8 @@ To facilitate the evaluation we set up the evaluation environment on an Internet
 
 ### Build and Run
 
-By default, all the memory are allocated on DRAM. If you want to test it on Persistent Memory, please specify the PM file in the command line.
-We provides scripts to evaluate in one-button. You can also build and run the benchmark manually.
+By default, all the memory are allocated on DRAM. If you want to test it on persistent memory, please specify the PM file in the command line.
+We provide scripts to evaluate in one-button. You can also build and run the benchmark manually.
 
 #### Evaluate in one-button
 ```$xslt
@@ -39,7 +39,7 @@ sh run.sh
 ```
 
 #### Build the benchmark
-You can build the benchmark with the following command lines. In this benchmark, we evaluate insert and point query performance on synthetic datasets.
+You can build the benchmark with the following command lines. In this benchmark, we evaluate insert and point query performance on synthetic data sets.
 ```
 cmake .
 make
@@ -69,7 +69,7 @@ The results will be written into `./Result/insert.csv` and `./Result/query.csv` 
 
 #### Plot the figures
 
-We provides the scripts to plot the insert and point query figures.
+We provide the scripts to plot the insert and point query figures, corresponding to Figure 10 in the paper.
 ```asm
 cd Figure
 pip3 install -r requirements.txt
