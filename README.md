@@ -2,16 +2,16 @@
 
 Extendible Radix Tree (ERT), an efficient indexing structure for PM that significantly reduces tree heights to minimize random reads, while still maintaining fast in-node search speed. The key idea is to use extendible hashing for each node in a radix tree. 
 
-This repo contains the source codes of Extendible Radix Tree. The implementation includes Extendible Radix Tree, a random number generator for generating test data, and a simple memory manager as well as all other state-of-the-art works evaluated in the paper. 
+This repository contains the source codes of Extendible Radix Tree. The implementation includes Extendible Radix Tree, a random number generator for generating test data, and a simple memory manager as well as all other state-of-the-art works evaluated in the paper. 
 
 Specifically, the `fastalloc` memory manager supports allocating memory in DRAM and space allocation in PM. 
-The `extendible_radix_tree` contains the source codes of ERT. We also provides the source codes of `FAST&FAIR`, `LB+Trees`, `WORT`, `WOART`, and `ROART`.
-To generate the graphs in the paper, we also provides the scripts in the `Figure` part.
+The `extendible_radix_tree` contains the source codes of ERT. We also provide the source codes of `FAST&FAIR`, `LB+Trees`, `WORT`, `WOART`, and `ROART`.
+To generate the graphs in the paper, we provide the scripts in the `Figure` part.
 
 
 ### Dependence
 
-The evaluation requires requires the following hardware and software components to function properly:
+The evaluation requires the following hardware and software components to function properly:
 
 #### Hardware
 1. [Intel® Xeon® Platinum Processors](https://www.intel.com/content/www/us/en/products/details/processors/xeon/scalable/platinum.html)
@@ -26,7 +26,7 @@ The evaluation requires requires the following hardware and software components 
 To set up the Optane DCPMM, please refer to the [document](https://www.intel.com/content/www/us/en/developer/articles/guide/qsg-intro-to-provisioning-pmem.html).
 Note that Optane DCPMM should be mapped to a pre-defined address space through a DAX file system.
 
-To facilitate the evaluation we set up the evaluation environment on an Internet-accessible machine. The login credentials will be provided upon requests.
+To facilitate the evaluation, we set up the evaluation environment on an Internet-accessible machine. The login credentials will be provided upon requests.
 
 ### Build and Run
 
