@@ -26,8 +26,6 @@ The evaluation requires the following hardware and software components to functi
 To set up the Optane DCPMM, please refer to the [document](https://www.intel.com/content/www/us/en/developer/articles/guide/qsg-intro-to-provisioning-pmem.html).
 Note that Optane DCPMM should be mapped to a pre-defined address space through a DAX file system.
 
-To facilitate the evaluation, we set up the evaluation environment on an Internet-accessible machine. The login credentials will be provided upon requests.
-
 ### Build and Run
 
 By default, all the memory are allocated on DRAM. If you want to test it on persistent memory, please specify the PM file in the command line.
