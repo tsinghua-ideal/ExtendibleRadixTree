@@ -76,8 +76,6 @@ python3 plot_query.py
 ```
 
 ### Contacts
-Points of contacts for artifacts evaluation:
-
 - [Ke Wang](https://skyelves.github.io/)
 
 - [Yiwei Li](https://leepoly.com/about/)
